@@ -1,20 +1,47 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
-import { PoMenuItem } from '@po-ui/ng-components';
+import { PoMenuItem, PoMenuPanelItem } from "@po-ui/ng-components";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-
-  readonly menus: Array<PoMenuItem> = [
-    { label: 'Home', action: this.onClick.bind(this) }
+  title: string = "Customers";
+  public readonly menuItems: Array<PoMenuPanelItem> = [
+    {
+      label: "Home",
+      action: this.changeTitle.bind(this),
+      icon: "po-icon-home",
+    },
+    {
+      label: "Users",
+      action: this.changeTitle.bind(this),
+      icon: "po-icon-user",
+    },
+    {
+      label: "Products",
+      action: this.changeTitle.bind(this),
+      icon: "po-icon po-icon-list",
+    },
+    {
+      label: "Enterprises",
+      action: this.changeTitle.bind(this),
+      icon: "po-icon po-icon-world",
+    },
+    {
+      label: "Settings",
+      action: this.changeTitle.bind(this),
+      icon: "po-icon-settings",
+    },
   ];
 
-  private onClick() {
-    alert('Clicked in menu item');
+  changeTitle(menu: PoMenuPanelItem) {
+    this.title = menu.label;
   }
 
+  private onClick() {
+    alert("Clicked in menu item");
+  }
 }

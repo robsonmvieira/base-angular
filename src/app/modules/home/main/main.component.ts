@@ -1,83 +1,115 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from "@angular/core";
 import {
-  PoDialogService, PoDynamicFormField, PoDynamicFormFieldChanged, PoDynamicFormValidation,
+  PoDialogService,
+  PoDynamicFormField,
+  PoDynamicFormFieldChanged,
+  PoDynamicFormValidation,
   PoMenuPanelItem,
   PoModalComponent,
-  PoNavbarItem, PoNotificationService,
+  PoNavbarItem,
+  PoNotificationService,
   PoTableAction,
   PoTableColumn,
-  PoTableComponent
+  PoTableComponent,
 } from "@po-ui/ng-components";
-import {SamplePoTableAirfareService} from "../../../../core/service/sample-service";
-import {PoDynamicFormRegisterService} from "../../../../core/service/register-service";
+import { SamplePoTableAirfareService } from "../../../../core/service/sample-service";
+import { PoDynamicFormRegisterService } from "../../../../core/service/register-service";
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css'],
-  providers: [SamplePoTableAirfareService, PoDialogService,PoDynamicFormRegisterService
-]
-
+  selector: "app-main",
+  templateUrl: "./main.component.html",
+  styleUrls: ["./main.component.css"],
+  providers: [
+    SamplePoTableAirfareService,
+    PoDialogService,
+    PoDynamicFormRegisterService,
+  ],
 })
 export class MainComponent implements OnInit {
-
-  title: string = 'Customers';
+  title: string = "Customers";
 
   public readonly menuItems: Array<PoMenuPanelItem> = [
-    { label: 'Home', action: this.changeTitle.bind(this), icon: 'po-icon-home' },
-    { label: 'Users', action: this.changeTitle.bind(this), icon: 'po-icon-user' },
-    { label: 'Products', action: this.changeTitle.bind(this), icon: 'po-icon po-icon-list' },
-    { label: 'Enterprises', action: this.changeTitle.bind(this), icon: 'po-icon po-icon-world' },
-    { label: 'Settings', action: this.changeTitle.bind(this), icon: 'po-icon-settings' },
+    {
+      label: "Home",
+      action: this.changeTitle.bind(this),
+      icon: "po-icon-home",
+    },
+    {
+      label: "Users",
+      action: this.changeTitle.bind(this),
+      icon: "po-icon-user",
+    },
+    {
+      label: "Products",
+      action: this.changeTitle.bind(this),
+      icon: "po-icon po-icon-list",
+    },
+    {
+      label: "Enterprises",
+      action: this.changeTitle.bind(this),
+      icon: "po-icon po-icon-world",
+    },
+    {
+      label: "Settings",
+      action: this.changeTitle.bind(this),
+      icon: "po-icon-settings",
+    },
   ];
 
   public readonly navBarItens: Array<PoNavbarItem> = [
     {
-      label: 'Cadastros',link: '#'
+      label: "Cadastros",
+      link: "#",
     },
     {
-      label: 'Importacao',link: '#'
+      label: "Importacao",
+      link: "#",
     },
     {
-      label: 'Empresa',link: '#'
+      label: "Empresa",
+      link: "#",
     },
     {
-      label: 'Cadastros',link: '#'
+      label: "Cadastros",
+      link: "#",
     },
     {
-      label: 'Usuarios',link: '#'
+      label: "Usuarios",
+      link: "#",
     },
     {
-      label: 'Importacao',link: '#'
+      label: "Importacao",
+      link: "#",
     },
     {
-      label: 'Empresa',link: '#'
+      label: "Empresa",
+      link: "#",
     },
     {
-      label: 'Cadastros',link: '#'
-    }
-  ]
+      label: "Cadastros",
+      link: "#",
+    },
+  ];
 
   changeTitle(menu: PoMenuPanelItem) {
     this.title = menu.label;
   }
 
-
-constructor(private sampleAirfare: SamplePoTableAirfareService,
-            private poNotification: PoNotificationService,
-            private poDialog: PoDialogService,
-            private registerService: PoDynamicFormRegisterService) {
-}
-
+  constructor(
+    private sampleAirfare: SamplePoTableAirfareService,
+    private poNotification: PoNotificationService,
+    private poDialog: PoDialogService,
+    private registerService: PoDynamicFormRegisterService
+  ) {}
 
   actions: Array<PoTableAction> = [
     {
       action: this.discount.bind(this),
-      icon: 'po-icon-finance',
-      label: 'Apply Discount',
-      disabled: this.validateDiscount.bind(this)
+      icon: "po-icon-finance",
+      label: "Apply Discount",
+      disabled: this.validateDiscount.bind(this),
     },
-    { action: this.details.bind(this), icon: 'po-icon-info', label: 'Details' }
+    { action: this.details.bind(this), icon: "po-icon-info", label: "Details" },
   ];
   columns: Array<PoTableColumn> = this.sampleAirfare.getColumns();
   detail: any;
@@ -93,31 +125,37 @@ constructor(private sampleAirfare: SamplePoTableAirfareService,
 
     if (selectedItems.length > 0) {
       this.poDialog.confirm({
-        title: 'Add to cart',
+        title: "Add to cart",
         message: `Would you like to add ${selectedItems.length} items to cart?`,
         confirm: () => this.confirmItems(selectedItems),
-        cancel: () => {}
+        cancel: () => {},
       });
     }
   }
 
   confirmItems(selectedItems: Array<any>) {
-    selectedItems.forEach(item => {
+    selectedItems.forEach((item) => {
       switch (item.status) {
-        case 'available':
-          this.poNotification.success(`${this.getDescription(item)} added succesfully`);
-          break;
-        case 'reserved':
-          this.poNotification.warning(
-            `${this.getDescription(item)} added succesfully, verify your e-mail to complete reservation`
+        case "available":
+          this.poNotification.success(
+            `${this.getDescription(item)} added succesfully`
           );
           break;
-        case 'closed':
-          this.poNotification.error(`${this.getDescription(item)} is closed and not available anymore`);
+        case "reserved":
+          this.poNotification.warning(
+            `${this.getDescription(
+              item
+            )} added succesfully, verify your e-mail to complete reservation`
+          );
+          break;
+        case "closed":
+          this.poNotification.error(
+            `${this.getDescription(item)} is closed and not available anymore`
+          );
           break;
       }
     });
-    this.items.forEach(item => (item.$selected = false));
+    this.items.forEach((item) => (item.$selected = false));
   }
 
   collapseAll() {
@@ -184,108 +222,143 @@ constructor(private sampleAirfare: SamplePoTableAirfareService,
 
   fields: Array<PoDynamicFormField> = [
     {
-      property: 'name',
-      divider: 'PERSONAL DATA',
+      property: "name",
+      divider: "PERSONAL DATA",
       required: true,
       minLength: 4,
       maxLength: 50,
       gridColumns: 6,
       gridSmColumns: 12,
-      order: 1
+      order: 1,
     },
     {
-      property: 'birthday',
-      label: 'Date of birth',
-      type: 'date',
-      format: 'mm/dd/yyyy',
+      property: "birthday",
+      label: "Date of birth",
+      type: "date",
+      format: "mm/dd/yyyy",
       gridColumns: 6,
       gridSmColumns: 12,
-      maxValue: '2010-01-01',
-      errorMessage: 'The date must be before the year 2010.',
-      order: -1
+      maxValue: "2010-01-01",
+      errorMessage: "The date must be before the year 2010.",
+      order: -1,
     },
-    { property: 'cpf', label: 'CPF', mask: '999.999.999-99', gridColumns: 6, gridSmColumns: 12, visible: false },
-    { property: 'cnpj', label: 'CNPJ', mask: '99.999.999/9999-99', gridColumns: 6, gridSmColumns: 12, visible: false },
-    { property: 'genre', gridColumns: 6, gridSmColumns: 12, options: ['Male', 'Female', 'Other'], order: 2 },
-    { property: 'shortDescription', label: 'Short Description', gridColumns: 12, gridSmColumns: 12, rows: 5 },
     {
-      property: 'secretKey',
-      label: 'Secret Key',
+      property: "cpf",
+      label: "CPF",
+      mask: "999.999.999-99",
+      gridColumns: 6,
+      gridSmColumns: 12,
+      visible: false,
+    },
+    {
+      property: "cnpj",
+      label: "CNPJ",
+      mask: "99.999.999/9999-99",
+      gridColumns: 6,
+      gridSmColumns: 12,
+      visible: false,
+    },
+    {
+      property: "genre",
+      gridColumns: 6,
+      gridSmColumns: 12,
+      options: ["Male", "Female", "Other"],
+      order: 2,
+    },
+    {
+      property: "shortDescription",
+      label: "Short Description",
+      gridColumns: 12,
+      gridSmColumns: 12,
+      rows: 5,
+    },
+    {
+      property: "secretKey",
+      label: "Secret Key",
       gridColumns: 6,
       secret: true,
-      pattern: '[a-zA]{5}[Z0-9]{3}',
-      errorMessage: 'At least 5 alphabetic and 3 numeric characters are required.'
+      pattern: "[a-zA]{5}[Z0-9]{3}",
+      errorMessage:
+        "At least 5 alphabetic and 3 numeric characters are required.",
     },
-    { property: 'email', divider: 'CONTACTS', gridColumns: 6 },
-    { property: 'phone', mask: '(99) 99999-9999', gridColumns: 6 },
-    { property: 'address', gridColumns: 6 },
+    { property: "email", divider: "CONTACTS", gridColumns: 6 },
+    { property: "phone", mask: "(99) 99999-9999", gridColumns: 6 },
+    { property: "address", gridColumns: 6 },
     {
-      property: 'addressNumber',
-      label: 'Address number',
-      type: 'number',
+      property: "addressNumber",
+      label: "Address number",
+      type: "number",
       gridColumns: 6,
       maxValue: 10000,
-      errorMessage: 'Invalid number.'
+      errorMessage: "Invalid number.",
     },
     {
-      property: 'state',
+      property: "state",
       gridColumns: 6,
       options: [
-        { label: 'Santa Catarina', value: 1 },
-        { label: 'São Paulo', value: 2 },
-        { label: 'Rio de Janeiro', value: 3 },
-        { label: 'Minas Gerais', value: 4 }
-      ]
-    },
-    { property: 'city', disabled: true, gridColumns: 6 },
-    { property: 'entryTime', label: 'Entry time', type: 'time', divider: 'Work data', gridColumns: 6 },
-    { property: 'exitTime', label: 'Exit time', type: 'time', gridColumns: 6 },
-    { property: 'wage', type: 'currency', gridColumns: 6 },
-    {
-      property: 'hobbies',
-      divider: 'MORE INFO',
-      gridColumns: 6,
-      gridSmColumns: 12,
-      optional: true,
-      options: ['Soccer', 'Basketball', 'Bike', 'Yoga', 'Travel', 'Run'],
-      optionsMulti: true
-    },
-    {
-      property: 'favoriteHero',
-      gridColumns: 6,
-      gridSmColumns: 12,
-      label: 'Favorite hero',
-      optional: true,
-      searchService: 'https://po-sample-api.herokuapp.com/v1/heroes',
-      columns: [
-        { property: 'nickname', label: 'Hero' },
-        { property: 'label', label: 'Name' }
+        { label: "Santa Catarina", value: 1 },
+        { label: "São Paulo", value: 2 },
+        { label: "Rio de Janeiro", value: 3 },
+        { label: "Minas Gerais", value: 4 },
       ],
-      fieldLabel: 'nickname',
-      fieldValue: 'email'
-    }
+    },
+    { property: "city", disabled: true, gridColumns: 6 },
+    {
+      property: "entryTime",
+      label: "Entry time",
+      type: "time",
+      divider: "Work data",
+      gridColumns: 6,
+    },
+    { property: "exitTime", label: "Exit time", type: "time", gridColumns: 6 },
+    { property: "wage", type: "currency", gridColumns: 6 },
+    {
+      property: "hobbies",
+      divider: "MORE INFO",
+      gridColumns: 6,
+      gridSmColumns: 12,
+      optional: true,
+      options: ["Soccer", "Basketball", "Bike", "Yoga", "Travel", "Run"],
+      optionsMulti: true,
+    },
+    {
+      property: "favoriteHero",
+      gridColumns: 6,
+      gridSmColumns: 12,
+      label: "Favorite hero",
+      optional: true,
+      searchService: "https://po-sample-api.herokuapp.com/v1/heroes",
+      columns: [
+        { property: "nickname", label: "Hero" },
+        { property: "label", label: "Name" },
+      ],
+      fieldLabel: "nickname",
+      fieldValue: "email",
+    },
   ];
 
   ngOnInit() {
     this.person = {
-      name: 'Tony Stark',
-      birthday: '1970-05-29',
-      isJuridicPerson: false
+      name: "Tony Stark",
+      birthday: "1970-05-29",
+      isJuridicPerson: false,
     };
   }
 
-  onChangeFields(changedValue: PoDynamicFormFieldChanged): PoDynamicFormValidation {
-    if (changedValue.property === 'state') {
+  onChangeFields(
+    changedValue: PoDynamicFormFieldChanged
+  ): PoDynamicFormValidation {
+    if (changedValue.property === "state") {
       return {
         value: { city: undefined },
         fields: [
           {
-            property: 'city',
+            property: "city",
             gridColumns: 6,
             options: this.registerService.getCity(changedValue.value.state),
-            disabled: false
-          }
-        ]
+            disabled: false,
+          },
+        ],
       };
     }
   }
@@ -294,5 +367,3 @@ constructor(private sampleAirfare: SamplePoTableAirfareService,
     return this.registerService.getUserDocument(value);
   }
 }
-
-
