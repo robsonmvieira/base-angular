@@ -19,11 +19,18 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppRoutingModule,
     PoModule,
     PoTemplatesModule,
-    RouterModule.forRoot([{
+    RouterModule.forRoot([
+      {
       path: '',
       loadChildren: () =>
         import('./modules/admin/admin.module').then(h => h.AdminModule)
-    }]),
+    },
+      {
+        path: 'main/products',
+        loadChildren: () => import('./modules/home/main/products/product.module')
+        .then(p => p.ProductModule)
+      }
+    ]),
     AdminModule,
     BrowserAnimationsModule,
 
