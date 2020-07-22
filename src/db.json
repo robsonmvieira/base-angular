@@ -1,0 +1,12 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "valor_SMS": 0.85,
+      "VALOR_SMS MARKETING": 2.15,
+      "ZIPDIAL": "25565-850",
+      "VALOR_REG_PF": 15.00,
+      "VALOR_REG_PJ": 25.00
+    }
+  ]
+}

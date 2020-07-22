@@ -11,15 +11,6 @@ const routes: Routes = [
   {
   path: '', component: MainComponent,
   },
-  // {
-  //   path: 'products', component: ProductListComponent
-  // },
-  // {
-  //   path: 'product/new', component: ProductNewComponent
-  // },
-  // {
-  //   path: 'product/edit/:id', component: ProductEditComponent
-  // }
 ];
 
 @NgModule({
