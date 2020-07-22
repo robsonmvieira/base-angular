@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "market-shoot-zial": {
@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@po-ui/style/css/po-theme-default.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -84,10 +85,19 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
+              "src/assets",
               "src/favicon.ico",
-              "src/assets"
+              {
+                "glob": "**\/*",
+                "input": "node_modules/@po-ui/style/images",
+                "output": "assets/images"
+              }
             ],
             "styles": [
+              // Arquivo de variáveis (tema padrão)
+              "node_modules/@po-ui/style/css/po-theme-default-variables.min.css",
+              // Arquivo com os estilos sem as variáveis "compiladas"
+              "node_modules/@po-ui/style/css/po-theme-core.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +129,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "market-shoot-zial"
+    }
+  },
+  "defaultProject": "market-shoot-zial",
+  "cli": {
+    "analytics": "ce87da19-4661-4dd7-8e90-edbf817935fc"
+  }
 }
