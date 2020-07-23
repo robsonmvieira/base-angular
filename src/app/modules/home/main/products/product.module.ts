@@ -4,6 +4,7 @@ import { ProductEditComponent } from "./product-edit/product-edit.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ProductRoutingModule } from "./product-routing.module";
+import { PoTableModule } from "@po-ui/ng-components";
 
 @NgModule({
   declarations: [
@@ -11,6 +12,6 @@ import { ProductRoutingModule } from "./product-routing.module";
     ProductNewComponent,
     ProductEditComponent,
   ],
-  imports: [CommonModule, ProductRoutingModule],
+  imports: [CommonModule, ProductRoutingModule, PoTableModule],
 })
 export class ProductModule {}
