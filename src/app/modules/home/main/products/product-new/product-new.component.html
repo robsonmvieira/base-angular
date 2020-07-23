@@ -1,1 +1,22 @@
-<p>product-new works!</p>
+<div class="container-form">
+  <po-dynamic-form [p-fields]="[{ property: 'VALOR SMS' }]"> </po-dynamic-form>
+  <po-dynamic-form [p-fields]="[{ property: 'VALOR SMS MARKETING' }]"> </po-dynamic-form>
+  <po-dynamic-form [p-fields]="[{ property: 'VALOR REG PF' }]"> </po-dynamic-form>
+  <po-dynamic-form [p-fields]="[{ property: 'VALOR REG PJ' }]"> </po-dynamic-form>
+  <div class="container-unique-label">
+    <po-dynamic-form [p-fields]="[{ property: 'ZIPDIAL' }]"> </po-dynamic-form>
+  </div>
+</div>
+
+<div class="btn-form">
+  <po-button p-label="Submit" (p-click)="onClick()"> </po-button>
+</div>
+
+
+
+<!--
+• VALOR_SMS
+• VALOR_SMS MARKETING
+• ZIPDIAL
+• VALOR_REG_PF
+• VALOR_REG_PJ -->

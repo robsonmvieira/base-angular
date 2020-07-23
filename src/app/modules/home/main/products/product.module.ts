@@ -5,6 +5,9 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ProductRoutingModule } from "./product-routing.module";
 import { PoTableModule } from "@po-ui/ng-components";
+import { PoDynamicModule } from "@po-ui/ng-components";
+import { PoButtonModule } from "@po-ui/ng-components";
+import { PoGridModule } from "@po-ui/ng-components";
 
 @NgModule({
   declarations: [
@@ -12,6 +15,13 @@ import { PoTableModule } from "@po-ui/ng-components";
     ProductNewComponent,
     ProductEditComponent,
   ],
-  imports: [CommonModule, ProductRoutingModule, PoTableModule],
+  imports: [
+    CommonModule,
+    ProductRoutingModule,
+    PoTableModule,
+    PoDynamicModule,
+    PoButtonModule,
+    PoGridModule,
+  ],
 })
 export class ProductModule {}
