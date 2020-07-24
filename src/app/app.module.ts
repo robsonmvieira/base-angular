@@ -29,6 +29,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         path: 'main/products',
         loadChildren: () => import('./modules/home/main/products/product.module')
         .then(p => p.ProductModule)
+      },
+      {
+        path: 'main/enterprises',
+        loadChildren: () => import('./modules/home/main/enterprises/enterprises.module')
+        .then(p => p.EnterprisesModule)
       }
     ]),
     AdminModule,
