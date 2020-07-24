@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormComponent } from './form/form.component';
-import { NewComponent } from './new/new.component';
+
+
 import { EnterprisesListComponent } from './enterprises-list/enterprises-list.component';
+import { EnterprisesRoutingModule } from './enterprises-routing.module';
+import { EnterpriseFormComponent } from './enterprise-form/enterprise-form.component';
 
 
 
 @NgModule({
-  declarations: [FormComponent, NewComponent, EnterprisesListComponent],
+  declarations: [EnterpriseFormComponent,  EnterprisesListComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    EnterprisesRoutingModule
   ]
 })
 export class EnterprisesModule { }
