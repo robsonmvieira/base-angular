@@ -1,1 +1,28 @@
-<p>enterprises-list works!</p>
+<po-table [p-columns]="[
+{ label: 'Razão Social', value: 'Razão Social' },
+{ label: 'Nome Fantasia', value: 'Nome Fantasia' },
+{ label: 'Logradouro', value: 'Logradouro' },
+{ label: 'Número Fachada', value: 'Número Fachada' },
+{ label: 'Complemento', value: 'Complemento' },
+{ label: 'Telefone Contato', value: 'Telefone Contato' },
+{ label: 'Contato', value: 'Contato' },
+{ label: 'CNPJ', value: 'CNPJ' },
+{ label: 'IE', value: 'IE' },
+{ label: 'DATA CRIAÇÃO', value: 'DATA CRIAÇÃO' }
+]"> </po-table>
+<div class="teste">
+  <po-dropdown p-label="Vincular Pordutos" [p-actions]="[{ label: 'lista de produtos', url: '/guides/how-install' }]">
+  </po-dropdown>
+</div>
+
+<!-- •	Razão Social;
+•	Nome Fantasia;
+•	Logradouro;
+•	Número Fachada;
+•	Complemento;
+•	Telefone Contato;
+•	Contato;
+•	CNPJ;
+•	IE;
+•	DATA CRIAÇÃO
+•	PRODUTOS VINCULAR - DROPLIST -->

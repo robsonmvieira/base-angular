@@ -1,18 +1,19 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-
-import { EnterprisesListComponent } from './enterprises-list/enterprises-list.component';
-import { EnterprisesRoutingModule } from './enterprises-routing.module';
-import { EnterpriseFormComponent } from './enterprise-form/enterprise-form.component';
-
-
+import { EnterprisesListComponent } from "./enterprises-list/enterprises-list.component";
+import { EnterprisesRoutingModule } from "./enterprises-routing.module";
+import { EnterpriseFormComponent } from "./enterprise-form/enterprise-form.component";
+import { PoTableModule } from "@po-ui/ng-components";
+import { PoDropdownModule } from "@po-ui/ng-components";
 
 @NgModule({
-  declarations: [EnterpriseFormComponent,  EnterprisesListComponent],
+  declarations: [EnterpriseFormComponent, EnterprisesListComponent],
   imports: [
     CommonModule,
-    EnterprisesRoutingModule
-  ]
+    EnterprisesRoutingModule,
+    PoTableModule,
+    PoDropdownModule,
+  ],
 })
-export class EnterprisesModule { }
+export class EnterprisesModule {}
